@@ -10,9 +10,9 @@
   
 <!-- Badges -->
 
-<a href="https://github.com/cifertech/2.4-GHz-band-Scanner" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=cifertech&message=2.4-GHz-band-Scanner&color=white&logo=github" alt="cifertech - 2.4-GHz-band-Scanner"></a>
-<a href="https://github.com/cifertech/2.4-GHz-band-Scanner"><img src="https://img.shields.io/github/stars/cifertech/2.4-GHz-band-Scanner?style=social" alt="stars - 2.4-GHz-band-Scanner"></a>
-<a href="https://github.com/cifertech/2.4-GHz-band-Scanner"><img src="https://img.shields.io/github/forks/cifertech/2.4-GHz-band-Scanner?style=social" alt="forks - 2.4-GHz-band-Scanner"></a>
+<a href="https://github.com/cifertech/nrfbox" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=cifertech&message=nrfbox&color=purple&logo=github" alt="cifertech - nrfbox"></a>
+<a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/github/stars/cifertech/nrfbox?style=social" alt="stars - nrfbox"></a>
+<a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/github/forks/cifertech/nrfbox?style=social" alt="forks - nrfbox"></a>
    
 <h4>
     <a href="https://twitter.com/cifertech1">TWITTER</a>
@@ -128,8 +128,8 @@ After uploading the code, the Menu will show up and you able to choose the optio
 <!-- Contributing -->
 ## :wave: Contributing
 
-<a href="https://github.com/cifertech/2.4-GHz-band-Scanner/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=cifertech/2.4-GHz-band-Scanner" />
+<a href="https://github.com/cifertech/nrfbox/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=cifertech/nrfbox" />
 </a>
 
 
