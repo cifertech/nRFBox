@@ -114,11 +114,15 @@ Before uploading the code you need to install the required library in Arduino ID
 - Install the library
 
 -Then search for the “GFX” and install it also.
+
+-Also you need "NRF24" library.
    
 <!-- Usage -->
 ## :eyes: Usage
 
-After uploading the code, the network scanner starts working automatically and Show the Scanned Data in Graph.
+After uploading the code, the Menu will show up and you able to choose the option you want.
+
+<img src="https://user-images.githubusercontent.com/62047147/206902220-c793003a-2a08-4eb2-8154-6182c203cf49.jpg" alt="screenshot" width="300" height="auto" />
 
 
 <!-- Contributing -->
@@ -142,4 +146,8 @@ CiferTech - [@twitter](https://twitter.com/cifertech1) - CiferTech@gmali.com
 
 Project Link: [https://github.com/cifertech/nRFBox](https://github.com/cifertech/nRFBox)
 
+<!-- Acknowledgments -->
+## :gem: Acknowledgements 
 
+ - [Poor Man’s 2.4 GHz Scanner](https://forum.arduino.cc/t/poor-mans-2-4-ghz-scanner/54846)
+ - [nRF24L01-WiFi-Jammer](https://github.com/hugorezende/nRF24L01-WiFi-Jammer)
