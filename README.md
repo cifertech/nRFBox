@@ -4,7 +4,7 @@
   <h1>nRFBOX</h1>
   
   <p>
-    2.4Ghz Tool
+    2.4Ghz ULTIMATE Tool
   </p>
   
   
