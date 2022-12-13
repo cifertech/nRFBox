@@ -77,7 +77,7 @@ void setup() {
   radio.startListening();
   radio.stopListening();
 
-   for (count = 0; count <= 128; count++) 
+   for (count = 0; count <= 127; count++) 
   {
     sensorArray[count] = 0;
   }
