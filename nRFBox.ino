@@ -5,6 +5,9 @@
 
 #define SCREEN_WIDTH 128 
 #define SCREEN_HEIGHT 32
+  
+#define CE  9
+#define CSN  10  
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
@@ -12,7 +15,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 #include <nRF24L01.h>
 #include "printf.h"
 
-RF24 radio(7, 8);
+RF24 radio(CE, CSN);
 
 
 const uint8_t num_channels = 64;
@@ -27,7 +30,7 @@ int           valuesDisplay[32];
 int selected =  0;
 int entered  = -1;
 
-#define CE  9
+
 
 #define CHANNELS  64
 int channel[CHANNELS];
