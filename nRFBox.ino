@@ -120,12 +120,18 @@ void displaymenu(void) {
   int back  = digitalRead(6);
   
 
-  if (up == LOW) {
+  if (up == LOW)
+  {
     selected = selected + 1;
+    if (selected > 2)
+      selected = 2;
     delay(200);
   };
-  if (down == LOW) {
+  if (down == LOW)
+  {
     selected = selected - 1;
+    if (selected < 0)
+      selected = 0;
     delay(200);
   };
   if (enter == LOW) {
