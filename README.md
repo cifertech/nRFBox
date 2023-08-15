@@ -26,20 +26,33 @@
 </div>
 
 <br />
+============================================================================================
 
-<!-- Table of Contents -->
-# :notebook_with_decorative_cover: Table of Contents
+nRF-BOX Release Note - Version 2.1.1
 
-- [About the Project](#star2-about-the-project)
-  * [Pictures](#camera-Pictures)
-  * [Features](#dart-features)
-- [Getting Started](#toolbox-getting-started)
-  * [Schematic](#electric_plug-Schematic)
-  * [Installation](#gear-installation)
-- [Usage](#eyes-usage)
-- [Contributing](#wave-contributing)
-- [License](#warning-license)
-- [Contact](#handshake-contact)
+Release Date: [8/15/2023]
+
+## New Features
+
+- 128-channel analyzer
+- Show status with NeoPixel ws2812
+
+## Enhancements
+
+- 2.4 Jammer improved with better control for channel selection and starting the attack
+- 2.4 jammer is more effective (this gives you the option to lower the traffic in a specific channel not entirely cut the channel off)
+- More suitable graph for channel analyzer
+
+## Bug Fixes
+
+- Menu Selection bug fixed
+- RF scanner bug fixed
+- 2.4 jammer bug fixed
+
+============================================================================================
+
+
+
 
   
 
@@ -151,3 +164,5 @@ Project Link: [https://github.com/cifertech/nRFBox](https://github.com/cifertech
 
  - [Poor Man’s 2.4 GHz Scanner](https://forum.arduino.cc/t/poor-mans-2-4-ghz-scanner/54846)
  - [nRF24L01-WiFi-Jammer](https://github.com/hugorezende/nRF24L01-WiFi-Jammer)
+ - [Universal-RC-system](https://github.com/alexbeliaev/Universal-RC-system/tree/master)
+
