@@ -11,15 +11,18 @@
 <!-- Badges -->
 
 <a href="https://github.com/cifertech/nrfbox" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=cifertech&message=nrfbox&color=purple&logo=github" alt="cifertech - nrfbox"></a>
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/cifertech/nrfbox/total)
+
 <a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/github/stars/cifertech/nrfbox?style=social" alt="stars - nrfbox"></a>
 <a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/github/forks/cifertech/nrfbox?style=social" alt="forks - nrfbox"></a>
+
    
 <h4>
-    <a href="https://twitter.com/cifertech1">TWITTER</a>
+    <a href="https://twitter.com/techcifer">TWITTER</a>
   <span> · </span>
     <a href="https://www.instagram.com/cifertech/">INSTAGRAM</a>
   <span> · </span>
-    <a href="https://www.youtube.com/c/cifertech">YOUTUBE</a>
+    <a href="https://www.youtube.com/@techcifer">YOUTUBE</a>
   <span> · </span>
     <a href="https://cifertech.net/">WEBSITE</a>
   </h4>
@@ -31,7 +34,7 @@
 
 ## 📖 Explore the Full Documentation
 
-Ready to dive deeper into Daeva's details? Discover the full story, in-depth tutorials, and all the exciting features in our comprehensive [documentation](https://cifertech.net/daeva-your-subghz-replay-attack-gadget-for-rf-hacking/). Click the link and explore further!
+Ready to dive deeper into nRFBOX's details? Discover the full story, in-depth tutorials, and all the exciting features in our comprehensive [documentation](https://cifertech.net/daeva-your-subghz-replay-attack-gadget-for-rf-hacking/). Click the link and explore further!
   
 
 ## ⚠ Future Changes
@@ -56,17 +59,17 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 ### 🎯 Features
 
 **Software:**
-- Scanner: Scans the 2.4GHz frequency band to detect active channels and devices.
-- Analyzer: Analyzes the detected signals and provides detailed information about the activity.
-- Jammer: Jams wireless communication on selected channels to test network robustness.
-- BLE Jammer: Specifically targets Bluetooth Low Energy (BLE) devices to disrupt their communication.
-- BLE Spoofer: Spoofs BLE devices to simulate various BLE signals for testing and research.
-- Sour Apple: A specialized attack for testing security measures against specific wireless vulnerabilities. 
+- **Scanner**: Scans the 2.4GHz frequency band to detect active channels and devices.
+- **Analyzer**: Analyzes the detected signals and provides detailed information about the activity.
+- **Jammer**: Jams wireless communication on selected channels to test network robustness.
+- **BLE Jammer**: Specifically targets Bluetooth Low Energy (BLE) devices to disrupt their communication.
+- **BLE Spoofer**: Spoofs BLE devices to simulate various BLE signals for testing and research.
+- **Sour Apple**: A specialized attack for testing security measures against specific wireless vulnerabilities. 
 
 **Hardware:**
-- ESP32 Wroom32U: The main microcontroller that handles processing and communication tasks.
-- NRF24 GTmini Modules: Used for wireless communication and jamming; recommended to use three NRF24 modules for the BLE jammer functionality.
-- OLED 0.96" Display: Provides real-time visual feedback and a user interface for interacting with the device.
+- ESP32 Wroom32U
+- NRF24 GTmini Modules
+- OLED 0.96" Display
    
 <!-- Usage -->
 ## :eyes: Usage
