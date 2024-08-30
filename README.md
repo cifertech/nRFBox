@@ -70,13 +70,21 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 - ESP32 Wroom32U
 - NRF24 GTmini Modules
 - OLED 0.96" Display
-   
-<!-- Usage -->
-## :eyes: Usage
+
+<!-- nRFBOX V2 -->
+## :eyes: nRFBOX V2
 
 After uploading the code, the Menu will show up and you able to choose the option you want.
 
 <img src="https://user-images.githubusercontent.com/62047147/206902220-c793003a-2a08-4eb2-8154-6182c203cf49.jpg" alt="screenshot" width="300" height="auto" />
+
+   
+<!-- nRFBOX V1 -->
+## :eyes: nRFBOX V1
+
+After uploading the code, the Menu will show up and you able to choose the option you want.
+
+<img src="https://github.com/user-attachments/assets/b121fe84-c789-409a-85f5-21f6d5854347" alt="screenshot" width="600" height="auto" />
 
 
 <!-- License -->
