@@ -1,18 +1,14 @@
 <div align="center">
 
   <img src="https://user-images.githubusercontent.com/62047147/195847997-97553030-3b79-4643-9f2c-1f04bba6b989.png" alt="logo" width="100" height="auto" />
-  <h1>nRFBOX</h1>
   
-  <p>
-    2.4Ghz ULTIMATE Tool
-  </p>
-  
-  
-<!-- Badges -->
+  <h1> nRFBOX </h1>
+  <p> All-in-One Gadget for BLE and 2.4GHz Networks </p>
 
+
+<!-- Badges -->
 <a href="https://github.com/cifertech/nrfbox" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=cifertech&message=nrfbox&color=purple&logo=github" alt="cifertech - nrfbox"></a>
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/cifertech/nrfbox/total)
-
 <a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/github/stars/cifertech/nrfbox?style=social" alt="stars - nrfbox"></a>
 <a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/github/forks/cifertech/nrfbox?style=social" alt="forks - nrfbox"></a>
 
