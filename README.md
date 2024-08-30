@@ -73,15 +73,11 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 <!-- nRFBOX V2 -->
 ## :eyes: nRFBOX V2
 
-After uploading the code, the Menu will show up and you able to choose the option you want.
-
 <img src="https://github.com/user-attachments/assets/1ab0600b-9c9f-46de-86d6-11826d46027d" alt="screenshot" width="600" height="auto" />
 
    
 <!-- nRFBOX V1 -->
 ## :eyes: nRFBOX V1
-
-After uploading the code, the Menu will show up and you able to choose the option you want.
 
 <img src="https://github.com/user-attachments/assets/b121fe84-c789-409a-85f5-21f6d5854347" alt="screenshot" width="600" height="auto" />
 
