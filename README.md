@@ -47,7 +47,7 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 
 
 <div align="center"> 
-  <img src="https://github.com/cifertech/Daeva/assets/62047147/4ef99302-c279-4895-a8d0-10ea1a10c8b3" alt="screenshot" width="Auto" height="Auto" />
+  <img src="" alt="screenshot" width="Auto" height="Auto" />
 </div>
 
 
@@ -89,7 +89,7 @@ Distributed under the MIT License. See LICENSE.txt for more information.
 
 CiferTech - [@twitter](https://twitter.com/techcifer) - CiferTech@gmali.com
 
-Project Link: [https://github.com/cifertech/Daeva](https://github.com/cifertech/nrfbox)
+Project Link: [https://github.com/cifertech/nRFBOX](https://github.com/cifertech/nrfbox)
 
 <!-- Acknowledgments -->
 ## :gem: Acknowledgements 
