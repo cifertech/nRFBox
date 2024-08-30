@@ -50,9 +50,8 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 
 
 <div align="center"> 
-  <img src="" alt="screenshot" width="Auto" height="Auto" />
+  <img src="https://github.com/user-attachments/assets/7012353c-2d09-4956-9152-937cf6a7ce18" alt="screenshot" width="Auto" height="Auto" />
 </div>
-
 
 
 <!-- Features -->
@@ -76,7 +75,7 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 
 After uploading the code, the Menu will show up and you able to choose the option you want.
 
-<img src="https://user-images.githubusercontent.com/62047147/206902220-c793003a-2a08-4eb2-8154-6182c203cf49.jpg" alt="screenshot" width="300" height="auto" />
+<img src="https://github.com/user-attachments/assets/1ab0600b-9c9f-46de-86d6-11826d46027d" alt="screenshot" width="600" height="auto" />
 
    
 <!-- nRFBOX V1 -->
