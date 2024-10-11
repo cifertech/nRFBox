@@ -26,18 +26,20 @@
 
 <br />
 
-
+<div>&nbsp;</div>
 
 ## 📖 Explore the Full Documentation
 
 Ready to dive deeper into nRFBOX's details? Discover the full story, in-depth tutorials, and all the exciting features in our comprehensive [documentation](https://cifertech.net/nrfbox-your-all-in-one-gadget-for-ble-and-2-4ghz-networks/). Click the link and explore further!
   
+<div>&nbsp;</div>
 
 ## ⚠ Future Changes
 - Optimizations: Improve the efficiency of the scanning and jamming algorithms.
 - Additional Features: Add support for more wireless protocols and enhance spoofing capabilities.
 - User Interface: Develop a more user-friendly interface with enhanced display graphics and easier navigation.
   
+<div>&nbsp;</div>
 
 <!-- About the Project -->
 ## :star2: About the Project
@@ -49,6 +51,7 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
   <img src="https://github.com/user-attachments/assets/7012353c-2d09-4956-9152-937cf6a7ce18" alt="screenshot" width="Auto" height="Auto" />
 </div>
 
+<div>&nbsp;</div>
 
 <!-- Features -->
 ### 🎯 Features
@@ -66,6 +69,8 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 - NRF24 GTmini Modules
 - OLED 0.96" Display
 
+<div>&nbsp;</div>
+
 <!-- nRFBOX V2 -->
 ## :eyes: nRFBOX V2
 
@@ -77,12 +82,40 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 
 <img src="https://github.com/user-attachments/assets/b121fe84-c789-409a-85f5-21f6d5854347" alt="screenshot" width="600" height="auto" />
 
+<div>&nbsp;</div>
+
+## Uploading the Firmware (.bin) to ESP32
+
+If you prefer not to upload the code manually or encounter errors during compilation, you can directly upload the precompiled `.bin` file to the ESP32. Follow these steps:
+
+### Step 1: Download the Required Tools
+1. **ESP32 Flash Download Tool**: Download the tool from Espressif's official site: [ESP32 Flash Download Tool](https://www.espressif.com/en/support/download/other-tools).
+2. **USB Drivers**: Make sure the drivers for the ESP32 are installed on your system. You can download the drivers from [CP210x USB to UART Bridge VCP Drivers](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers) if you're using the CP2102 chip.
+
+### Step 2: Prepare the `.bin` File
+1. Download the precompiled `.bin` file from the repository. 
+
+### Step 3: Upload the `.bin` File to ESP32
+1. Connect your ESP32 to your computer using a USB cable.
+2. Open the **ESP32 Flash Download Tool** and configure the following:
+   - Select the appropriate **chip type** (ESP32) and click **OK**.
+   - In the **Download Path Config** section, add the `.bin` file and set the start address to `0x1000`.
+   - Select the correct **COM port** where your ESP32 is connected.
+   - Choose the correct **Baud rate** (115200 is generally recommended).
+
+3. Click on **Start** to begin uploading the `.bin` file to your ESP32.
+
+### Step 4: Verify the Upload
+Once the upload is completed, the tool will confirm a successful flash. You can now restart your ESP32 and run the firmware.
+
+<div>&nbsp;</div>
 
 <!-- License -->
 ## :warning: License
 
 Distributed under the MIT License. See LICENSE.txt for more information.
 
+<div>&nbsp;</div>
 
 <!-- Contact -->
 ## :handshake: Contact
@@ -92,6 +125,8 @@ Distributed under the MIT License. See LICENSE.txt for more information.
 CiferTech - [@twitter](https://twitter.com/techcifer) - CiferTech@gmali.com
 
 Project Link: [https://github.com/cifertech/nRFBOX](https://github.com/cifertech/nrfbox)
+
+<div>&nbsp;</div>
 
 <!-- Acknowledgments -->
 ## :gem: Acknowledgements 
