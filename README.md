@@ -93,7 +93,7 @@ If you prefer not to upload the code manually or encounter errors during compila
 2. **USB Drivers**: Make sure the drivers for the ESP32 are installed on your system. You can download the drivers from [CP210x USB to UART Bridge VCP Drivers](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers) if you're using the CP2102 chip.
 
 ### Step 2: Prepare the `.bin` File
-1. Download the precompiled `.bin` file from the repository. 
+1. Download the [precompiled `.bin`](https://github.com/cifertech/nRFBox/tree/main/precompiled%20%20bin) file from the repository. 
 
 ### Step 3: Upload the `.bin` File to ESP32
 1. Connect your ESP32 to your computer using a USB cable.
