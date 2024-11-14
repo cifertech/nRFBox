@@ -41,6 +41,63 @@ Ready to dive deeper into nRFBOX's details? Discover the full story, in-depth tu
   
 <div>&nbsp;</div>
 
+<h2>🛠 Functionality Status and Reliability</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Status</th>
+      <th>Reliability</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Scanner</strong></td>
+      <td>Stable</td>
+      <td>High</td>
+      <td>Reliably scans the 2.4 GHz band to detect active channels and nearby devices. Occasional misses in high-interference environments.</td>
+    </tr>
+    <tr>
+      <td><strong>Analyzer</strong></td>
+      <td>Stable</td>
+      <td>Moderate</td>
+      <td>Provides useful insights into detected signals, but additional updates are needed for improved accuracy and detailed analysis.</td>
+    </tr>
+    <tr>
+      <td><strong>Jammer</strong></td>
+      <td>Experimental</td>
+      <td>Variable</td>
+      <td>Basic jamming works but effectiveness varies by device type and signal strength. Testing on select channels is recommended.</td>
+    </tr>
+    <tr>
+      <td><strong>BLE Jammer</strong></td>
+      <td>In Development</td>
+      <td>Low</td>
+      <td>Disrupts BLE devices inconsistently. Further improvements are needed to ensure stability and effectiveness across BLE variants.</td>
+    </tr>
+    <tr>
+      <td><strong>BLE Spoofer</strong></td>
+      <td>Experimental</td>
+      <td>Low</td>
+      <td>Capable of simulating basic BLE signals but has limited compatibility. Best for controlled testing scenarios.</td>
+    </tr>
+    <tr>
+      <td><strong>Sour Apple</strong></td>
+      <td>Experimental</td>
+      <td>Low</td>
+      <td>Specialized attack method with limited reliability; effective only under specific conditions. Further tuning is required.</td>
+    </tr>
+  </tbody>
+</table>
+
+- When using **multiple NRF24** modules, the power demands can exceed the capabilities of the onboard power supply or regulator. Running three NRF modules simultaneously may cause instability, leading to intermittent failures or causing the nRFBox to stop functioning altogether.
+- **Range Limitations**: The jammer is most effective at short range. Beyond a certain distance, the signal weakens, making it harder to consistently disrupt communication.
+- **Device Variability**: Different devices react to jamming signals in varying ways. Some may be more resistant.
+
+<div>&nbsp;</div>
+
 <!-- About the Project -->
 ## :star2: About the Project
 nRFBOX is a wireless toolkit designed to explore, analyze, and interact with various wireless communication protocols. It combines the ESP32 Wroom32U, NRF24 modules, an OLED display, and other components to create a multifunctional device that can act as a scanner, analyzer, jammer, BLE jammer, BLE spoofer, and perform advanced tasks such as the "Sour Apple" attack.
@@ -84,7 +141,7 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 
 <div>&nbsp;</div>
 
-## Uploading the Firmware (.bin) to ESP32
+## 🔗 Uploading the Firmware (.bin) to ESP32
 
 If you prefer not to upload the code manually or encounter errors during compilation, you can directly upload the precompiled `.bin` file to the ESP32. Follow these steps:
 
