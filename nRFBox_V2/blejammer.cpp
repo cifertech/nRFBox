@@ -48,11 +48,11 @@ void IRAM_ATTR handleButtonPress() {
 
 void configureRadio(RF24 &radio, byte channel) {
   radio.powerDown();
-  delay(1000);
+  delay(500);
   radio.powerUp();
   radio.setAutoAck(false);
-  radio.setPALevel(RF24_PA_LOW);
-  radio.setDataRate(RF24_250KBPS);
+  radio.setPALevel(RF24_PA_HIGH);
+  radio.setDataRate(RF24_2MBPS);
   radio.stopListening();
   radio.setChannel(channel);
 }
@@ -165,7 +165,9 @@ void blejammerSetup(){
   esp_bt_controller_deinit();
   esp_wifi_stop();
   esp_wifi_deinit();
+  
   u8g2.begin();
+  
   pinMode(MODE_BUTTON, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(MODE_BUTTON), handleButtonPress, FALLING);
 

@@ -19,6 +19,20 @@
 #include "spoofer.h"
 #include "sourapple.h"
 
+
+#define CE_PIN_A  5
+#define CSN_PIN_A 17
+
+#define CE_PIN_B  16
+#define CSN_PIN_B 4
+
+#define CE_PIN_C  15
+#define CSN_PIN_C 2
+
+RF24 RadioA(CE_PIN_A, CSN_PIN_A);
+RF24 RadioB(CE_PIN_B, CSN_PIN_B);
+RF24 RadioC(CE_PIN_C, CSN_PIN_C);
+
 //U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0); // [full framebuffer, size = 1024 bytes]
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 
@@ -76,8 +90,23 @@ void about() {
   u8g2.sendBuffer();
 }
 
+void configureNrf(RF24 &radio) {
+  radio.begin();
+  radio.powerDown();
+  delay(500);
+  radio.powerUp();
+  //radio.setAutoAck(false);
+  //radio.setPALevel(RF24_PA_HIGH);
+  //radio.setDataRate(RF24_2MBPS);
+  //radio.stopListening();
+}
+
 
 void setup() {
+
+  configureNrf(RadioA);
+  configureNrf(RadioB);
+  configureNrf(RadioC);
 
   u8g2.begin();
   u8g2.setBitmapMode(1);

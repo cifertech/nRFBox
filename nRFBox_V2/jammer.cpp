@@ -11,21 +11,31 @@
 #define BT3 26  // data rate
 #define BT4 25  // PA level
 
-#define CE_PIN 5
-#define CSN_PIN 17
+
+#define CE_A  5
+#define CSN_A 17
+
+#define CE_B  16
+#define CSN_B 4
+
+#define CE_C  15
+#define CSN_C 2
+
+RF24 radioA(CE_A, CSN_A);
+RF24 radioB(CE_B, CSN_B);
+RF24 radioC(CE_C, CSN_C);
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 
-RF24 radio(CE_PIN, CSN_PIN);
 
-const int num_channels = 64;
-int value[num_channels];
-int valuesDisplay[32];
-int channels = 1;
-const int num_reps = 50;
-bool jamming = false;
-const byte address[6] = "00001";
+const int     num_channels = 64;
+int           value[num_channels];
+int           valuesDisplay[32];
+int           channels = 1;
+const int     num_reps = 50;
+bool          jamming = false;
+const byte    address[6] = "00001";
 
 uint8_t dataRateIndex = 0;  // Index for cycling through data rates
 uint8_t paLevelIndex = 0;   // Index for cycling through PA levels
@@ -33,19 +43,18 @@ uint8_t paLevelIndex = 0;   // Index for cycling through PA levels
 extern U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2;
 
 
-
 void setRadioParameters() {
     switch (dataRateIndex) {
-        case 0: radio.setDataRate(RF24_250KBPS); break;
-        case 1: radio.setDataRate(RF24_1MBPS); break;
-        case 2: radio.setDataRate(RF24_2MBPS); break;
+        case 0: radioA.setDataRate(RF24_250KBPS); radioB.setDataRate(RF24_250KBPS); radioC.setDataRate(RF24_250KBPS); break;
+        case 1: radioA.setDataRate(RF24_1MBPS);  radioB.setDataRate(RF24_1MBPS); radioC.setDataRate(RF24_1MBPS); break;
+        case 2: radioA.setDataRate(RF24_2MBPS); radioB.setDataRate(RF24_2MBPS); radioC.setDataRate(RF24_2MBPS);break;
     }
     
     switch (paLevelIndex) {
-        case 0: radio.setPALevel(RF24_PA_MIN); break;
-        case 1: radio.setPALevel(RF24_PA_LOW); break;
-        case 2: radio.setPALevel(RF24_PA_HIGH); break;
-        case 3: radio.setPALevel(RF24_PA_MAX); break;
+        case 0: radioA.setPALevel(RF24_PA_MIN); radioB.setPALevel(RF24_PA_MIN); radioC.setPALevel(RF24_PA_MIN); break;
+        case 1: radioA.setPALevel(RF24_PA_LOW); radioB.setPALevel(RF24_PA_LOW); radioC.setPALevel(RF24_PA_LOW); break;
+        case 2: radioA.setPALevel(RF24_PA_HIGH); radioB.setPALevel(RF24_PA_HIGH); radioC.setPALevel(RF24_PA_HIGH); break;
+        case 3: radioA.setPALevel(RF24_PA_MAX); radioB.setPALevel(RF24_PA_MAX); radioC.setPALevel(RF24_PA_MAX); break;
     }
 
     Serial.print("Data Rate: ");
@@ -55,31 +64,57 @@ void setRadioParameters() {
 }
 
 void radioSetChannel(int channels) {
-    radio.setChannel(channels);
+    radioA.setChannel(channels);
+    radioB.setChannel(channels);
+    radioC.setChannel(channels);
 }
 
 void jammer() {
-    const char text[] = "xxxxxxxxxxxxxxxx";
+  int methode = 1;
+  
+  const char text[] = { 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55,
+                        0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55 };
+
+  if (methode = 0) {                    
     for (int i = ((channels * 5) + 1); i < ((channels * 5) + 23); i++) {
         radioSetChannel(i);
-        bool result = radio.write(&text, sizeof(text));
-        if (result) {
-            Serial.println("Transmission successful");
-        } else {
-            Serial.println("Transmission failed");
-        }
+        bool resultA = radioA.write(&text, sizeof(text));
+        bool resultB = radioB.write(&text, sizeof(text));
+        bool resultC = radioC.write(&text, sizeof(text));
+        
         delay(10);
     }
+  }
+  
+  if (methode = 1) {
+    for (int i = 0; i < 22; i++) { // Jam across 22 channels
+    int channelA = ((channels * 5) + 1) + i;
+    int channelB = ((channels * 5) + 1) + i + 1;
+    int channelC = ((channels * 5) + 1) + i + 2;
+
+    // Set each radio to a different channel
+    radioA.setChannel(channelA);
+    radioB.setChannel(channelB);
+    radioC.setChannel(channelC);
+
+    // Transmit payload on all three channels simultaneously
+    radioA.write(&text, sizeof(text));
+    radioB.write(&text, sizeof(text));
+    radioC.write(&text, sizeof(text));
+
+    delay(10); // Delay before hopping to the next set of channels
+    }
+  }
 }
 
 void pressBt01() {
     static unsigned long last_interrupt_time = 0;
     unsigned long interrupt_time = millis();
     if (interrupt_time - last_interrupt_time > 200) {
-        if (channels < 13) {
+        if (channels < 14) {
             channels++;
         } else {
-            channels = 0;
+            channels = 1;
         }
         Serial.print("Channel: ");
         Serial.println(channels);
@@ -119,6 +154,18 @@ void pressBt04() {
     last_interrupt_time = interrupt_time;
 }
 
+void configure(RF24 &radio) {
+  radio.begin();
+  radio.openWritingPipe(0xFFFFFFFFFF);
+  //radio.setAutoAck(false);
+  radio.powerDown();
+  delay(500);
+  radio.powerUp();  
+  radio.setPALevel(RF24_PA_MIN);
+  radio.setDataRate(RF24_250KBPS);
+  radio.stopListening();
+}
+
 void jammerSetup(){
     Serial.begin(115200);
 
@@ -133,17 +180,28 @@ void jammerSetup(){
 
     SPI.begin();
     
-    pinMode(CE_PIN, OUTPUT);
-    pinMode(CSN_PIN, OUTPUT);
+    pinMode(CE_A, OUTPUT);
+    pinMode(CSN_A, OUTPUT);
+    
+    pinMode(CE_B, OUTPUT);
+    pinMode(CSN_B, OUTPUT);
+    
+    pinMode(CE_C, OUTPUT);
+    pinMode(CSN_C, OUTPUT);
 
     u8g2.begin();
     u8g2.clearBuffer();
     u8g2.sendBuffer();
 
-    radio.begin();
+
+    configure(radioA);
+    configure(radioB);
+    configure(radioC);
+
+    //radio.begin();
     setRadioParameters();
-    radio.openWritingPipe(address);
-    radio.stopListening();
+    //radio.openWritingPipe(address);
+    //radio.stopListening();
 
     Serial.println("Radio configured and ready");  
 }
@@ -203,9 +261,9 @@ void jammerLoop(){
     delay(50);
 
     if (jamming) {
-      u8g2.setCursor(80, 60);
+    u8g2.setCursor(80, 60);
     u8g2.print("Active ");
-        Serial.println("Starting jamming on channel " + String(channels + 1));
+        Serial.println("Starting jamming on channel " + String(channels));
         jammer();
     }  
 }
