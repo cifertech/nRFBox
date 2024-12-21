@@ -2,7 +2,7 @@
    This software is licensed under the MIT License:
    https://github.com/cifertech/nrfbox
    ________________________________________ */
-   
+
 #include <Arduino.h> 
 #include "blejammer.h"
 
@@ -19,15 +19,20 @@ extern U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2;
 
 #define MODE_BUTTON 26
 
-RF24 radio1(CE_PIN_1, CSN_PIN_1);
-RF24 radio2(CE_PIN_2, CSN_PIN_2);
-RF24 radio3(CE_PIN_3, CSN_PIN_3);
+RF24 radio1(CE_PIN_1, CSN_PIN_1, 16000000);
+RF24 radio2(CE_PIN_2, CSN_PIN_2, 16000000);
+RF24 radio3(CE_PIN_3, CSN_PIN_3, 16000000);
 
-enum OperationMode { DEACTIVE_MODE, SINGLE_MODULE, MULTI_MODULE };
+enum OperationMode { DEACTIVE_MODE, BLE_MODULE, Bluetooth_MODULE };
 OperationMode currentMode = DEACTIVE_MODE;
 
-const byte channels[] = {2, 26, 80};
-byte currentChannelIndex = 0;
+int bluetooth_channels[] = {32, 34, 46, 48, 50, 52, 0, 1, 2, 4, 6, 8, 22, 24, 26, 28, 30, 74, 76, 78, 80};
+int ble_channels[] = {2, 26, 80};
+
+const byte BLE_channels[] = {2, 26, 80}; // Corresponding BLE advertising channels
+byte channelGroup1[] = {2, 5, 8, 11};    // Module 1 frequency group
+byte channelGroup2[] = {26, 29, 32, 35}; // Module 2 frequency group
+byte channelGroup3[] = {80, 83, 86, 89}; // Module 3 frequency group
 
 volatile bool modeChangeRequested = false;
 
@@ -35,8 +40,7 @@ unsigned long lastJammingTime = 0;
 const unsigned long jammingInterval = 10;
 
 unsigned long lastButtonPressTime = 0;
-const unsigned long debounceDelay = 50;
-
+const unsigned long debounceDelay = 500;
 
 void IRAM_ATTR handleButtonPress() {
   unsigned long currentTime = millis();
@@ -46,71 +50,54 @@ void IRAM_ATTR handleButtonPress() {
   }
 }
 
-void configureRadio(RF24 &radio, byte channel) {
-  radio.powerDown();
-  delay(500);
-  radio.powerUp();
+void configureRadio(RF24 &radio, const byte* channels, size_t size) {
   radio.setAutoAck(false);
-  radio.setPALevel(RF24_PA_HIGH);
-  radio.setDataRate(RF24_2MBPS);
   radio.stopListening();
-  radio.setChannel(channel);
+  radio.setRetries(0, 0);
+  radio.setPALevel(RF24_PA_MAX, true);
+  radio.setDataRate(RF24_2MBPS);
+  radio.setCRCLength(RF24_CRC_DISABLED);
+  radio.printPrettyDetails();
+
+  for (size_t i = 0; i < size; i++) {
+    radio.setChannel(channels[i]);
+    radio.startConstCarrier(RF24_PA_MAX, channels[i]);
+  }
 }
 
 void initializeRadiosMultiMode() {
   if (radio1.begin()) {
-    Serial.println("Multi-Module Mode: Radio 1 started");
-    configureRadio(radio1, 80);
-  } else {
-    Serial.println("Failed to initialize Radio 1");
+    configureRadio(radio1, channelGroup1, sizeof(channelGroup1));
   }
-
   if (radio2.begin()) {
-    Serial.println("Multi-Module Mode: Radio 2 started");
-    configureRadio(radio2, 26);
-  } else {
-    Serial.println("Failed to initialize Radio 2");
+    configureRadio(radio2, channelGroup2, sizeof(channelGroup2));
   }
-
   if (radio3.begin()) {
-    Serial.println("Multi-Module Mode: Radio 3 started");
-    configureRadio(radio3, 2);
-  } else {
-    Serial.println("Failed to initialize Radio 3");
+    configureRadio(radio3, channelGroup3, sizeof(channelGroup3));
   }
-
-  Serial.println("All radios configured and ready in Multi-Module Mode");
 }
 
 void initializeRadios() {
-  if (currentMode == SINGLE_MODULE) {
+  if (currentMode == BLE_MODULE) {
     if (radio1.begin()) {
-      Serial.println("Single Module Mode: Radio 1 started");
-      configureRadio(radio1, channels[currentChannelIndex]);
-    } else {
-      Serial.println("Failed to initialize Radio 1 in Single Module Mode");
+      configureRadio(radio1, BLE_channels, sizeof(BLE_channels));
     }
-  } else if (currentMode == MULTI_MODULE) {
+  } else if (currentMode == Bluetooth_MODULE) {
     initializeRadiosMultiMode();
   } else if (currentMode == DEACTIVE_MODE) {
-    Serial.println("Deactive Mode: All radios are turned off");
-    radio1.powerDown();
-    radio2.powerDown();
-    radio3.powerDown();
+    radio1.setChannel(0);
+    radio2.setChannel(0);
+    radio3.setChannel(0);
+    delay(100);
   }
 }
 
-void jammer(RF24 &radio, int channel) {
+void jammer(RF24 &radio, const byte* channels, size_t size) {
   const char text[] = "xxxxxxxxxxxxxxxx";
-  for (int i = (channel * 5) + 1; i < (channel * 5) + 23; i++) {
-    radio.setChannel(i);
-    bool result = radio.write(&text, sizeof(text));
-    if (result) {
-      Serial.println("Transmission successful");
-    } else {
-      Serial.println("Transmission failed");
-    }
-    delay(10);
+  for (size_t i = 0; i < size; i++) {
+    radio.setChannel(channels[i]);
+    radio.write(&text, sizeof(text));
+    //delayMicroseconds(20);
   }
 }
 
@@ -120,10 +107,10 @@ void updateOLED() {
 
   u8g2.setCursor(0, 10);
   u8g2.print("Mode ");
-  u8g2.print(" ........ ");
-  u8g2.setCursor(70, 10);
+  u8g2.print(" ....... ");
+  u8g2.setCursor(65, 10);
   u8g2.print("[");
-  u8g2.print(currentMode == SINGLE_MODULE ? "Single" : currentMode == MULTI_MODULE ? "Multi" : "Deactive");
+  u8g2.print(currentMode == BLE_MODULE ? "BLE" : currentMode == Bluetooth_MODULE ? "Bluetooth" : "Deactive");
   u8g2.print("]");
 
   u8g2.setCursor(0, 35);
@@ -148,56 +135,43 @@ void checkModeChange() {
   if (modeChangeRequested) {
     modeChangeRequested = false;
     currentMode = static_cast<OperationMode>((currentMode + 1) % 3);
-    Serial.println(currentMode == SINGLE_MODULE ? "Switched to Single Module Mode" :
-                   currentMode == MULTI_MODULE ? "Switched to Multi-Module Mode" :
-                   "Switched to Deactive Mode");
-
     initializeRadios();
     updateOLED();
   }
 }
 
-
-void blejammerSetup(){
-  
+void blejammerSetup() {
   Serial.begin(115200);
-  
+
   esp_bt_controller_deinit();
   esp_wifi_stop();
   esp_wifi_deinit();
-  
+  esp_wifi_disconnect();
+
   u8g2.begin();
-  
+
   pinMode(MODE_BUTTON, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(MODE_BUTTON), handleButtonPress, FALLING);
 
   initializeRadios();
   updateOLED();
- 
 }
 
-void blejammerLoop(){
-  
+void blejammerLoop() {
   checkModeChange();
 
-  if (currentMode == SINGLE_MODULE) {
-    if (millis() - lastJammingTime >= jammingInterval) {
-      jammer(radio1, channels[currentChannelIndex]);
-      currentChannelIndex = (currentChannelIndex + 1) % 3;
-      Serial.print("Single Module Mode: Jamming on channel range ");
-      Serial.println(channels[currentChannelIndex]);
-      lastJammingTime = millis();
-    }
-  } else if (currentMode == MULTI_MODULE) {
-    if (millis() - lastJammingTime >= jammingInterval) {
-      jammer(radio1, 80);
-      jammer(radio2, 26);
-      jammer(radio3, 2);
-
-      Serial.println("Multi-Module Mode: Jamming on all channel ranges");
-
-      lastJammingTime = millis();
-      updateOLED();
-    }
-  }  
+  if (currentMode == BLE_MODULE) {
+        int randomIndex = random(0, sizeof(ble_channels) / sizeof(ble_channels[0]));
+        int channel = ble_channels[randomIndex];
+        radio1.setChannel(channel);
+        radio2.setChannel(channel);
+        radio3.setChannel(channel);
+        
+  } else if (currentMode == Bluetooth_MODULE) {
+        int randomIndex = random(0, sizeof(bluetooth_channels) / sizeof(bluetooth_channels[0]));
+        int channel = bluetooth_channels[randomIndex];
+        radio1.setChannel(channel);
+        radio2.setChannel(channel);
+        radio3.setChannel(channel);
+  }
 }

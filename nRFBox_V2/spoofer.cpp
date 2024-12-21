@@ -28,7 +28,7 @@ int lastButtonStateAdvPrev = LOW;
 
 
 unsigned long lastDebounceTime = 0;
-unsigned long debounceDelay = 50; 
+unsigned long debounceDelay = 500; 
 
 bool isAdvertising = true; 
 

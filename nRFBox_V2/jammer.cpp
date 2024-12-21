@@ -21,9 +21,9 @@
 #define CE_C  15
 #define CSN_C 2
 
-RF24 radioA(CE_A, CSN_A);
-RF24 radioB(CE_B, CSN_B);
-RF24 radioC(CE_C, CSN_C);
+RF24 radioA(CE_A, CSN_A, 16000000);
+RF24 radioB(CE_B, CSN_B, 16000000);
+RF24 radioC(CE_C, CSN_C, 16000000);
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
@@ -157,13 +157,13 @@ void pressBt04() {
 void configure(RF24 &radio) {
   radio.begin();
   radio.openWritingPipe(0xFFFFFFFFFF);
-  //radio.setAutoAck(false);
-  radio.powerDown();
-  delay(500);
-  radio.powerUp();  
-  radio.setPALevel(RF24_PA_MIN);
-  radio.setDataRate(RF24_250KBPS);
+  radio.setAutoAck(false);
   radio.stopListening();
+  radio.setRetries(0, 0);
+  radio.setPALevel(RF24_PA_MAX, true);
+  radio.setDataRate(RF24_2MBPS);
+  radio.setCRCLength(RF24_CRC_DISABLED);
+  radio.printPrettyDetails();
 }
 
 void jammerSetup(){

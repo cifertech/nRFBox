@@ -92,13 +92,12 @@ void about() {
 
 void configureNrf(RF24 &radio) {
   radio.begin();
-  radio.powerDown();
-  delay(500);
-  radio.powerUp();
-  //radio.setAutoAck(false);
-  //radio.setPALevel(RF24_PA_HIGH);
-  //radio.setDataRate(RF24_2MBPS);
-  //radio.stopListening();
+  radio.setAutoAck(false);
+  radio.stopListening();
+  radio.setRetries(0, 0);
+  radio.setPALevel(RF24_PA_MAX, true);
+  radio.setDataRate(RF24_2MBPS);
+  radio.setCRCLength(RF24_CRC_DISABLED);
 }
 
 
@@ -115,8 +114,6 @@ void setup() {
 
   u8g2.clearBuffer();
 
-  //u8g2.drawXBMP(0, 0, 128, 64, logo_cifer);
-
   u8g2.setFont(u8g2_font_ncenB14_tr); 
   u8g2.setCursor(15, 35); 
   u8g2.print("nRF-BOX");
@@ -127,6 +124,13 @@ void setup() {
   
   u8g2.sendBuffer(); 
   delay(3000);
+
+  u8g2.clearBuffer();
+
+  u8g2.drawXBMP(0, 0, 128, 64, logo_cifer);
+
+  u8g2.sendBuffer(); 
+  delay(250);   
 
   pinMode(BUTTON_UP_PIN, INPUT_PULLUP); 
   pinMode(BUTTON_SELECT_PIN, INPUT_PULLUP); 
