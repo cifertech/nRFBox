@@ -62,19 +62,19 @@ Ready to dive deeper into nRFBOX's details? Discover the full story, in-depth tu
     <tr>
       <td><strong>Analyzer</strong></td>
       <td>Stable</td>
-      <td>Moderate</td>
+      <td>High</td>
       <td>Provides useful insights into detected signals, but additional updates are needed for improved accuracy and detailed analysis.</td>
     </tr>
     <tr>
       <td><strong>Jammer</strong></td>
-      <td>Experimental</td>
-      <td>Variable</td>
+      <td>Stable</td>
+      <td>High</td>
       <td>Basic jamming works but effectiveness varies by device type and signal strength. Testing on select channels is recommended.</td>
     </tr>
     <tr>
       <td><strong>BLE Jammer</strong></td>
-      <td>In Development</td>
-      <td>Low</td>
+      <td>Stable</td>
+      <td>High</td>
       <td>Disrupts BLE devices inconsistently. Further improvements are needed to ensure stability and effectiveness across BLE variants.</td>
     </tr>
     <tr>
