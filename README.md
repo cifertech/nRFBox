@@ -34,13 +34,6 @@ Ready to dive deeper into nRFBOX's details? Discover the full story, in-depth tu
   
 <div>&nbsp;</div>
 
-## ⚠ Future Changes
-- Optimizations: Improve the efficiency of the scanning and jamming algorithms.
-- Additional Features: Add support for more wireless protocols and enhance spoofing capabilities.
-- User Interface: Develop a more user-friendly interface with enhanced display graphics and easier navigation.
-  
-<div>&nbsp;</div>
-
 <h2>🛠 Functionality Status and Reliability</h2>
 
 <table>
@@ -164,6 +157,17 @@ If you prefer not to upload the code manually or encounter errors during compila
 
 ### Step 4: Verify the Upload
 Once the upload is completed, the tool will confirm a successful flash. You can now restart your ESP32 and run the firmware.
+
+&nbsp;
+### Arduino IDE Settings:
+If you want to upload the sketch code to the ESP32, use the following settings in the Tools menu:
+- Built using ESP32 Board Version 1.0.5
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/2e43dc05-9ef7-4743-85f2-a8fc38e7b785" alt="Photo 1" style="width: 29%; border: 1px solid #ccc; border-radius: 5px;">
+  <img src="https://github.com/user-attachments/assets/9fc87b96-7442-44f8-9457-22d1b481eda1" alt="Photo 2" style="width: 45%; border: 1px solid #ccc; border-radius: 5px;">
+</div>
+
 
 <div>&nbsp;</div>
 
