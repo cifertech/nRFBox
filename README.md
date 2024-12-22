@@ -122,15 +122,21 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 <div>&nbsp;</div>
 
 <!-- nRFBOX V2 -->
-## :eyes: nRFBOX V2
+## :eyes: nRFBox Versions: Then and Now
 
-<img src="https://github.com/user-attachments/assets/1ab0600b-9c9f-46de-86d6-11826d46027d" alt="screenshot" width="600" height="auto" />
+<table>
+  <tr>
+    <td style="text-align: center;">
+      <img src="https://github.com/user-attachments/assets/b121fe84-c789-409a-85f5-21f6d5854347" alt="nRFBOX V1" style="width: 600px; border: 1px solid #ccc; border-radius: 5px;">
+      <p style="font-style: italic; font-size: 14px; margin-top: 5px;">nRFBox-v1 based on Arduino</p>
+    </td>    
+    <td style="text-align: center;">
+      <img src="https://github.com/user-attachments/assets/a044ab5e-346c-415f-b1fb-f65aa04c520a" alt="nRFBOX V2" style="width: 600px; border: 1px solid #ccc; border-radius: 5px;">
+      <p style="font-style: italic; font-size: 14px; margin-top: 5px;">nRFBox-v2 based on ESP32</p>
+    </td>
+  </tr>
+</table>
 
-   
-<!-- nRFBOX V1 -->
-## :eyes: nRFBOX V1
-
-<img src="https://github.com/user-attachments/assets/b121fe84-c789-409a-85f5-21f6d5854347" alt="screenshot" width="600" height="auto" />
 
 <div>&nbsp;</div>
 
@@ -200,5 +206,5 @@ Project Link: [https://github.com/cifertech/nRFBOX](https://github.com/cifertech
  - [AppleJuice](https://github.com/ECTO-1A/AppleJuice)
  - [ESP32-Sour-Apple](https://github.com/RapierXbox/ESP32-Sour-Apple)
 
-**Community Contributors**: Thank you to everyone who contributes to this project and helps improve nRFBOX.
+**Community Contributors**: Thanks to everyone who helped improve nRFBox! Your support is much appreciated!
 
