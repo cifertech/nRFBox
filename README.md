@@ -190,6 +190,7 @@ Project Link: [https://github.com/cifertech/nRFBOX](https://github.com/cifertech
 
 **The libraries and projects listed below are used in this software:**
  - [Poor Man’s 2.4 GHz Scanner](https://forum.arduino.cc/t/poor-mans-2-4-ghz-scanner/54846)
+ - [arduino_oled_menu](https://github.com/upiir/arduino_oled_menu)
  - [nRF24L01-WiFi-Jammer](https://github.com/hugorezende/nRF24L01-WiFi-Jammer)
  - [Universal-RC-system](https://github.com/alexbeliaev/Universal-RC-system/tree/master)
  - [AppleJuice](https://github.com/ECTO-1A/AppleJuice)
