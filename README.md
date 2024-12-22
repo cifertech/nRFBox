@@ -164,8 +164,8 @@ If you want to upload the sketch code to the ESP32, use the following settings i
 - Built using ESP32 Board Version 1.0.5
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-  <img src="https://github.com/user-attachments/assets/2e43dc05-9ef7-4743-85f2-a8fc38e7b785" alt="Photo 1" style="width: 29%; border: 1px solid #ccc; border-radius: 5px;">
-  <img src="https://github.com/user-attachments/assets/9fc87b96-7442-44f8-9457-22d1b481eda1" alt="Photo 2" style="width: 45%; border: 1px solid #ccc; border-radius: 5px;">
+  <img src="https://github.com/user-attachments/assets/2e43dc05-9ef7-4743-85f2-a8fc38e7b785" alt="Photo 1" style="width: 34%; border: 1px solid #ccc; border-radius: 5px;">
+  <img src="https://github.com/user-attachments/assets/9fc87b96-7442-44f8-9457-22d1b481eda1" alt="Photo 2" style="width: 53%; border: 1px solid #ccc; border-radius: 5px;">
 </div>
 
 
