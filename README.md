@@ -23,10 +23,7 @@
     <a href="https://cifertech.net/">WEBSITE</a>
   </h4>
 </div>
-
-<br />
-
-<div>&nbsp;</div>
+<br/>
 
 ## 📖 Explore the Full Documentation
 
