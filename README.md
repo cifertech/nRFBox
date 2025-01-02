@@ -152,7 +152,7 @@ If you prefer not to upload the code manually or encounter errors during compila
 1. Connect your ESP32 to your computer using a USB cable.
 2. Open the **ESP32 Flash Download Tool** and configure the following:
    - Select the appropriate **chip type** (ESP32) and click **OK**.
-   - In the **Download Path Config** section, add the `.bin` file and set the start address to `0x1000`.
+   - In the **Download Path Config** section, add the `.bin` file and set the start address to `0x10000`.
    - Select the correct **COM port** where your ESP32 is connected.
    - Choose the correct **Baud rate** (115200 is generally recommended).
 
