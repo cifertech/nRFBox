@@ -53,7 +53,7 @@ volatile bool ChangeRequested1 = false;
 volatile bool ChangeRequested2 = false;
 
 unsigned long lastPressTime = 0;
-const unsigned long debounceDelay = 100;
+const unsigned long debounceDelay = 200;
 
 
 void IRAM_ATTR handleButton() {
