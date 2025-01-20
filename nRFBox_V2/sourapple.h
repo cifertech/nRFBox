@@ -10,6 +10,8 @@
 #include <BLEUtils.h>
 #include <BLEServer.h>
 #include <U8g2lib.h>
+#include <Adafruit_NeoPixel.h>
+#include "neopixel.h"
 
 void sourappleSetup();
 void sourappleLoop();

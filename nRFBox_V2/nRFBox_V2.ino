@@ -5,19 +5,27 @@
 
 #include <Arduino.h>
 #include <U8g2lib.h>
+#include <stdint.h>
 #include <Adafruit_NeoPixel.h>
+#include <EEPROM.h>
 
 #ifdef U8X8_HAVE_HW_I2C
 #include <Wire.h>
 #endif
 
 #include "icon.h"
+#include "neopixel.h"
+#include "setting.h"
+
 #include "scanner.h"
 #include "analyzer.h"
 #include "jammer.h"
 #include "blejammer.h"
 #include "spoofer.h"
 #include "sourapple.h"
+#include "blescan.h"
+#include "wifiscan.h"
+#include "blackout.h"
 
 
 #define CE_PIN_A  5
@@ -38,29 +46,39 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 
 Adafruit_NeoPixel pixels(1, 14, NEO_GRB + NEO_KHZ800);
 
+extern uint8_t oledBrightness;
 
-const unsigned char* bitmap_icons[8] = {
+
+const unsigned char* bitmap_icons[11] = {
   bitmap_icon_scanner,
   bitmap_icon_analyzer,
   bitmap_icon_jammer,
+  bitmap_icon_kill,
   bitmap_icon_ble_jammer,
   bitmap_icon_spoofer,
   bitmap_icon_apple,
-  bitmap_icon_about
+  bitmap_icon_ble,
+  bitmap_icon_wifi,
+  bitmap_icon_about,
+  bitmap_icon_setting
 };
 
 
-const int NUM_ITEMS = 7; 
+const int NUM_ITEMS = 11; 
 const int MAX_ITEM_LENGTH = 20; 
 
 char menu_items [NUM_ITEMS] [MAX_ITEM_LENGTH] = {  
   { "Scanner" }, 
   { "Analyzer" },
-  { "Jammer" },
+  { "WLAN Jammer" },
+  { "Proto Kill" },
   { "BLE Jammer" },
   { "BLE Spoofer" }, 
   { "Sour Apple" },
-  { "About" }
+  { "BLE Scan" },
+  { "WiFi Scan" },
+  { "About" },
+  { "Setting" }
  };
  
 
@@ -103,24 +121,38 @@ void configureNrf(RF24 &radio) {
 
 void setup() {
 
+  neopixelSetup();
+
   configureNrf(RadioA);
   configureNrf(RadioB);
   configureNrf(RadioC);
 
+  EEPROM.begin(512); 
+  oledBrightness = EEPROM.read(1);
+  
   u8g2.begin();
+  u8g2.setContrast(oledBrightness);
   u8g2.setBitmapMode(1);
-
-  pixels.begin();
 
   u8g2.clearBuffer();
 
   u8g2.setFont(u8g2_font_ncenB14_tr); 
-  u8g2.setCursor(15, 35); 
+  int16_t nameWidth = u8g2.getUTF8Width("nRF-BOX"); 
+  int16_t nameX = (128 - nameWidth) / 2;            
+  u8g2.setCursor(nameX, 25);                      
   u8g2.print("nRF-BOX");
-  
+
   u8g2.setFont(u8g2_font_ncenB08_tr); 
-  u8g2.setCursor(15, 50); 
+  int16_t creditWidth = u8g2.getUTF8Width("by CiferTech");
+  int16_t creditX = (106 - creditWidth) / 2;
+  u8g2.setCursor(creditX, 40);
   u8g2.print("by CiferTech");
+
+  u8g2.setFont(u8g2_font_6x10_tf); 
+  int16_t versionWidth = u8g2.getUTF8Width("v2.5.0");
+  int16_t versionX = (128 - versionWidth) / 2;
+  u8g2.setCursor(versionX, 60);
+  u8g2.print("v2.5.0");
   
   u8g2.sendBuffer(); 
   delay(3000);
@@ -173,8 +205,31 @@ void loop() {
      button_select_clicked = 1; 
 
 
-if (current_screen == 0 && item_selected == 6) {
-    while (item_selected == 6) {
+if (current_screen == 0 && item_selected == 10) {
+  settingSetup();
+    while (item_selected == 10) {
+        if (digitalRead(BUTTON_SELECT_PIN) == HIGH) {
+            if (callAbout) {
+                settingLoop();
+                callAbout = false;  // Toggle the state to not call about()
+            } else {
+                break;  // Toggle the state to break the loop
+                callAbout = true;  // Reset the state for the next cycle
+            }
+
+            while (digitalRead(BUTTON_SELECT_PIN) == HIGH) {
+                // Wait for the button to be released
+                if (callAbout = true){
+                  break;
+                }
+            }
+        }
+    }
+  }     
+
+
+if (current_screen == 0 && item_selected == 9) {
+    while (item_selected == 9) {
         if (digitalRead(BUTTON_SELECT_PIN) == HIGH) {
             if (callAbout) {
                 about();
@@ -195,9 +250,57 @@ if (current_screen == 0 && item_selected == 6) {
   }
 
 
-if (current_screen == 0 && item_selected == 5) {
+if (current_screen == 0 && item_selected == 8) {
+  wifiscanSetup();
+    while (item_selected == 8) {
+        if (digitalRead(BUTTON_SELECT_PIN) == HIGH) { 
+         wifiscanLoop();     
+            if (callAbout) {                             
+                callAbout = false;  // Toggle the state to not call about()
+            } else {
+                break;  // Toggle the state to break the loop
+                callAbout = true;  // Reset the state for the next cycle
+            }
+
+            while (digitalRead(BUTTON_SELECT_PIN) == HIGH) {
+                // Wait for the button to be released
+                
+                if (callAbout = true){
+                  break;
+                }
+            }
+        }
+    }
+}
+
+
+if (current_screen == 0 && item_selected == 7) {
+  blescanSetup();
+    while (item_selected == 7) {
+        if (digitalRead(BUTTON_SELECT_PIN) == HIGH) { 
+          blescanLoop();     
+            if (callAbout) {                
+                callAbout = false;  // Toggle the state to not call about()
+            } else {
+                break;  // Toggle the state to break the loop
+                callAbout = true;  // Reset the state for the next cycle
+            }
+
+            while (digitalRead(BUTTON_SELECT_PIN) == HIGH) {
+                // Wait for the button to be released
+                
+                if (callAbout = true){
+                  break;
+                }
+            }
+        }
+    }
+}
+
+
+if (current_screen == 0 && item_selected == 6) {
   sourappleSetup();
-    while (item_selected == 5) {
+    while (item_selected == 6) {
         if (digitalRead(BUTTON_SELECT_PIN) == HIGH) { 
           sourappleLoop();     
             if (callAbout) {                
@@ -219,9 +322,9 @@ if (current_screen == 0 && item_selected == 5) {
 }     
 
 
-if (current_screen == 0 && item_selected == 4) {
+if (current_screen == 0 && item_selected == 5) {
   spooferSetup();
-    while (item_selected == 4) {
+    while (item_selected == 5) {
         if (digitalRead(BUTTON_SELECT_PIN) == HIGH) { 
           spooferLoop();     
             if (callAbout) {                
@@ -243,11 +346,35 @@ if (current_screen == 0 && item_selected == 4) {
 }
      
 
-if (current_screen == 0 && item_selected == 3) {
+if (current_screen == 0 && item_selected == 4) {
   blejammerSetup();
-    while (item_selected == 3) {
+    while (item_selected == 4) {
         if (digitalRead(BUTTON_SELECT_PIN) == HIGH) { 
           blejammerLoop();     
+            if (callAbout) {                
+                callAbout = false;  // Toggle the state to not call about()
+            } else {
+                break;  // Toggle the state to break the loop
+                callAbout = true;  // Reset the state for the next cycle
+            }
+
+            while (digitalRead(BUTTON_SELECT_PIN) == HIGH) {
+                // Wait for the button to be released
+                
+                if (callAbout = true){
+                  break;
+                }
+            }
+        }
+    }
+}
+
+
+if (current_screen == 0 && item_selected == 3) {
+  blackoutSetup();
+    while (item_selected == 3) {
+        if (digitalRead(BUTTON_SELECT_PIN) == HIGH) { 
+          blackoutLoop();     
             if (callAbout) {                
                 callAbout = false;  // Toggle the state to not call about()
             } else {
@@ -353,8 +480,8 @@ if (current_screen == 0 && item_selected == 0) {
 
   u8g2.clearBuffer();  
 
-    if (current_screen == 0) { 
-      
+    if (current_screen == 0) {
+     
       u8g2.drawXBMP(0, 22, 128, 21, bitmap_item_sel_outline);
 
       u8g2.setFont(u8g_font_7x14);

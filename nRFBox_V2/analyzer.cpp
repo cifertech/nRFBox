@@ -5,8 +5,10 @@
    
 #include <Arduino.h> 
 #include "analyzer.h"
+#include "setting.h"
 
 extern U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2;
+extern Adafruit_NeoPixel pixels;
 
 #define NRF24_CONFIG      0x00
 #define NRF24_EN_AA       0x01
@@ -72,12 +74,14 @@ void ScanChannels(void) {
   DIsable();
  // for (int j = 0; j < 10; j++) {
     for (int i = 0; i < CHANNELS; i++) {
+      setNeoPixelColour("purple");
       setregister(NRF24_RF_CH, (128 * i) / CHANNELS);
       setrx();
       delayMicroseconds(40);
       DIsable();
       if (getregister(NRF24_RPD) > 0) CHannel[i]++;
     }
+    setNeoPixelColour("0");
  // }
 }
 
@@ -128,7 +132,7 @@ bool carrierDetected() {
 void analyzerSetup(){
   
     Serial.begin(115200);
-
+    
     esp_bt_controller_deinit();
     esp_wifi_stop();
     esp_wifi_deinit();
@@ -140,10 +144,6 @@ void analyzerSetup(){
     SPI.setDataMode(SPI_MODE0);
     SPI.setFrequency(10000000);
     SPI.setBitOrder(MSBFIRST);
-
-    u8g2.begin();
-    u8g2.clearBuffer();
-    u8g2.sendBuffer();
 
     digitalWrite(CSN, HIGH);
     digitalWrite(CE, LOW);
@@ -193,6 +193,6 @@ void analyzerLoop(){
     u8g2.print("1...5...10...25..50...80...128");
     u8g2.sendBuffer();
 
-    delay(50);  
+    //delay(50);  
 
 }

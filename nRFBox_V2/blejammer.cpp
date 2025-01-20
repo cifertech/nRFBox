@@ -29,10 +29,10 @@ OperationMode currentMode = DEACTIVE_MODE;
 int bluetooth_channels[] = {32, 34, 46, 48, 50, 52, 0, 1, 2, 4, 6, 8, 22, 24, 26, 28, 30, 74, 76, 78, 80};
 int ble_channels[] = {2, 26, 80};
 
-const byte BLE_channels[] = {2, 26, 80}; // Corresponding BLE advertising channels
-byte channelGroup1[] = {2, 5, 8, 11};    // Module 1 frequency group
-byte channelGroup2[] = {26, 29, 32, 35}; // Module 2 frequency group
-byte channelGroup3[] = {80, 83, 86, 89}; // Module 3 frequency group
+const byte BLE_channels[] = {2, 26, 80}; 
+byte channelGroup1[] = {2, 5, 8, 11};    
+byte channelGroup2[] = {26, 29, 32, 35}; 
+byte channelGroup3[] = {80, 83, 86, 89}; 
 
 volatile bool modeChangeRequested = false;
 
@@ -78,18 +78,14 @@ void initializeRadiosMultiMode() {
 }
 
 void initializeRadios() {
-  if (currentMode == BLE_MODULE) {
-    if (radio1.begin()) {
-      configureRadio(radio1, BLE_channels, sizeof(BLE_channels));
-    }
-  } else if (currentMode == Bluetooth_MODULE) {
+  if (currentMode == !DEACTIVE_MODE) {
     initializeRadiosMultiMode();
   } else if (currentMode == DEACTIVE_MODE) {
-    radio1.setChannel(0);
-    radio2.setChannel(0);
-    radio3.setChannel(0);
+    radio1.powerDown();
+    radio2.powerDown();
+    radio3.powerDown();
     delay(100);
-  }
+  } 
 }
 
 void jammer(RF24 &radio, const byte* channels, size_t size) {
@@ -147,8 +143,6 @@ void blejammerSetup() {
   esp_wifi_stop();
   esp_wifi_deinit();
   esp_wifi_disconnect();
-
-  u8g2.begin();
 
   pinMode(MODE_BUTTON, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(MODE_BUTTON), handleButtonPress, FALLING);

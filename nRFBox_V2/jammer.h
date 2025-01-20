@@ -12,6 +12,7 @@
 #include <RF24.h>
 #include "esp_bt.h"
 #include "esp_wifi.h"
+#include "neopixel.h"
 
 void jammerSetup();
 void jammerLoop();

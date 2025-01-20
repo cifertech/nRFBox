@@ -2,17 +2,17 @@
    This software is licensed under the MIT License:
    https://github.com/cifertech/nrfbox
    ________________________________________ */
+   
+#ifndef setting_H
+#define setting_H
 
-#ifndef analyzer_H
-#define analyzer_H
-
-#include <SPI.h>
+#include <BLEDevice.h>
 #include <U8g2lib.h>
-#include "esp_bt.h"
-#include "esp_wifi.h"
-#include "neopixel.h"
+#include <Adafruit_NeoPixel.h>
 
-void analyzerSetup();
-void analyzerLoop();
+extern bool neoPixelActive;
+
+void settingSetup();
+void settingLoop();
 
 #endif

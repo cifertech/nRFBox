@@ -7,8 +7,8 @@
 #include "jammer.h"
 
 #define BT1 33  // channels
-#define BT2 27  // jamming
-#define BT3 26  // data rate
+#define BT2 26  // data rate
+#define BT3 27  // jamming
 #define BT4 25  // PA level
 
 
@@ -37,6 +37,14 @@ const int     num_reps = 50;
 bool          jamming = false;
 const byte    address[6] = "00001";
 
+int wlanchannels[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
+
+int wifi_channels[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1, 2, 3, 4, 5, 6, 7};
+
+byte wifiGroup1[] = {1, 2, 3, 4};    
+byte wifiGroup2[] = {5, 6, 7, 8}; 
+byte wifiGroup3[] = {9, 10, 11, 12}; 
+
 uint8_t dataRateIndex = 0;  // Index for cycling through data rates
 uint8_t paLevelIndex = 0;   // Index for cycling through PA levels
 
@@ -57,10 +65,10 @@ void setRadioParameters() {
         case 3: radioA.setPALevel(RF24_PA_MAX); radioB.setPALevel(RF24_PA_MAX); radioC.setPALevel(RF24_PA_MAX); break;
     }
 
-    Serial.print("Data Rate: ");
-    Serial.println(dataRateIndex);
-    Serial.print("PA Level: ");
-    Serial.println(paLevelIndex);
+    //Serial.print("Data Rate: ");
+    //Serial.println(dataRateIndex);
+    //Serial.print("PA Level: ");
+    //Serial.println(paLevelIndex);
 }
 
 void radioSetChannel(int channels) {
@@ -71,38 +79,44 @@ void radioSetChannel(int channels) {
 
 void jammer() {
   int methode = 1;
-  
-  const char text[] = { 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55,
-                        0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55 };
 
-  if (methode = 0) {                    
+  if (methode == 1) {
+    const char text[] = { 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55,
+                          0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55, 0xAA, 0x55 };   
+                                         
     for (int i = ((channels * 5) + 1); i < ((channels * 5) + 23); i++) {
         radioSetChannel(i);
-        bool resultA = radioA.write(&text, sizeof(text));
-        bool resultB = radioB.write(&text, sizeof(text));
-        bool resultC = radioC.write(&text, sizeof(text));
+        radioA.write(&text, sizeof(text));
+        radioB.write(&text, sizeof(text));
+        radioC.write(&text, sizeof(text));
         
-        delay(10);
     }
   }
   
-  if (methode = 1) {
+  else if (methode == 2) {                    
+        radioSetChannel(channels);
+        int randomIndex = random(0, sizeof(wlanchannels) / sizeof(wlanchannels[channels]));      
+        bool resultA = radioA.write(&randomIndex, sizeof(randomIndex));
+        bool resultB = radioB.write(&randomIndex, sizeof(randomIndex));
+        bool resultC = radioC.write(&randomIndex, sizeof(randomIndex));
+  }
+  
+  else if (methode == 3) {
     for (int i = 0; i < 22; i++) { // Jam across 22 channels
     int channelA = ((channels * 5) + 1) + i;
     int channelB = ((channels * 5) + 1) + i + 1;
     int channelC = ((channels * 5) + 1) + i + 2;
 
-    // Set each radio to a different channel
+    int randomIndex = random(0, sizeof(wlanchannels) / sizeof(wlanchannels[0]));
+    
     radioA.setChannel(channelA);
     radioB.setChannel(channelB);
     radioC.setChannel(channelC);
 
-    // Transmit payload on all three channels simultaneously
-    radioA.write(&text, sizeof(text));
-    radioB.write(&text, sizeof(text));
-    radioC.write(&text, sizeof(text));
+    radioA.write(&randomIndex, sizeof(randomIndex));
+    radioB.write(&randomIndex, sizeof(randomIndex));
+    radioC.write(&randomIndex, sizeof(randomIndex));
 
-    delay(10); // Delay before hopping to the next set of channels
     }
   }
 }
@@ -116,8 +130,8 @@ void pressBt01() {
         } else {
             channels = 1;
         }
-        Serial.print("Channel: ");
-        Serial.println(channels);
+        //Serial.print("Channel: ");
+        //Serial.println(channels);
     }
     last_interrupt_time = interrupt_time;
 }
@@ -127,7 +141,7 @@ void pressBt02() {
     unsigned long interrupt_time = millis();
     if (interrupt_time - last_interrupt_time > 200) {
         jamming = !jamming;
-        Serial.println(jamming ? "Jamming started" : "Jamming stopped");
+        //Serial.println(jamming ? "Jamming started" : "Jamming stopped");
     }
     last_interrupt_time = interrupt_time;
 }
@@ -138,7 +152,7 @@ void pressBt03() {
     if (interrupt_time - last_interrupt_time > 200) {
         dataRateIndex = (dataRateIndex + 1) % 3; // Cycle through data rates
         setRadioParameters();
-        Serial.println("Data rate changed");
+        //Serial.println("Data rate changed");
     }
     last_interrupt_time = interrupt_time;
 }
@@ -149,7 +163,7 @@ void pressBt04() {
     if (interrupt_time - last_interrupt_time > 200) {
         paLevelIndex = (paLevelIndex + 1) % 4; // Cycle through power levels
         setRadioParameters();
-        Serial.println("Power level changed");
+        //Serial.println("Power level changed");
     }
     last_interrupt_time = interrupt_time;
 }
@@ -168,7 +182,7 @@ void configure(RF24 &radio) {
 
 void jammerSetup(){
     Serial.begin(115200);
-
+    
     esp_bt_controller_deinit();
     esp_wifi_stop();
     esp_wifi_deinit();
@@ -189,11 +203,6 @@ void jammerSetup(){
     pinMode(CE_C, OUTPUT);
     pinMode(CSN_C, OUTPUT);
 
-    u8g2.begin();
-    u8g2.clearBuffer();
-    u8g2.sendBuffer();
-
-
     configure(radioA);
     configure(radioB);
     configure(radioC);
@@ -203,7 +212,7 @@ void jammerSetup(){
     //radio.openWritingPipe(address);
     //radio.stopListening();
 
-    Serial.println("Radio configured and ready");  
+    //Serial.println("Radio configured and ready");  
 }
 
 
@@ -250,20 +259,22 @@ void jammerLoop(){
  
     if (jamming) {
       u8g2.setCursor(80, 60);
-      u8g2.print("Active ");        
+      u8g2.print("Active ");
+      setNeoPixelColour("red");        
     }else{
       u8g2.setCursor(80, 60);
       u8g2.print("disable ");
+      setNeoPixelColour("0");
     }
 
     u8g2.sendBuffer();
 
-    delay(50);
+    //delay(50);
 
     if (jamming) {
     u8g2.setCursor(80, 60);
     u8g2.print("Active ");
-        Serial.println("Starting jamming on channel " + String(channels));
-        jammer();
-    }  
+    //Serial.println("Starting jamming on channel " + String(channels));
+    jammer(); 
+  }  
 }
