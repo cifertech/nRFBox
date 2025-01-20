@@ -69,13 +69,13 @@ Ready to dive deeper into nRFBOX's details? Discover the full story, in-depth tu
     </tr>
     <tr>
       <td><strong>BLE Spoofer</strong></td>
-      <td>Experimental</td>
+      <td>Stable</td>
       <td>Low</td>
       <td>Capable of simulating basic BLE signals but has limited compatibility. Best for controlled testing scenarios.</td>
     </tr>
     <tr>
       <td><strong>Sour Apple</strong></td>
-      <td>Experimental</td>
+      <td>Stable</td>
       <td>Low</td>
       <td>Specialized attack method with limited reliability; effective only under specific conditions. Further tuning is required.</td>
     </tr>
@@ -109,7 +109,11 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 - **Jammer**: Jams wireless communication on selected channels to test network robustness.
 - **BLE Jammer**: Specifically targets Bluetooth Low Energy (BLE) devices to disrupt their communication.
 - **BLE Spoofer**: Spoofs BLE devices to simulate various BLE signals for testing and research.
-- **Sour Apple**: A specialized attack for testing security measures against specific wireless vulnerabilities. 
+- **Sour Apple**: A specialized attack for testing security measures against specific wireless vulnerabilities.
+- **Proto Kill Mode**: Proto Kill has evolved into a powerful tool for disrupting various protocols.
+
+- **WiFi Scanner**
+- **BLE Scanner**
 
 **Hardware:**
 - ESP32 Wroom32U
@@ -162,9 +166,9 @@ If you prefer not to upload the code manually or encounter errors during compila
 Once the upload is completed, the tool will confirm a successful flash. You can now restart your ESP32 and run the firmware.
 
 &nbsp;
-### Arduino IDE Settings:
+### Arduino IDE 1.8 Settings:
 If you want to upload the sketch code to the ESP32, use the following settings in the Tools menu:
-- Built using ESP32 Board Version 1.0.5
+- **Built using ESP32 Board Version 2.0.11**
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
   <img src="https://github.com/user-attachments/assets/2e43dc05-9ef7-4743-85f2-a8fc38e7b785" alt="Photo 1" style="width: 34%; border: 1px solid #ccc; border-radius: 5px;">
