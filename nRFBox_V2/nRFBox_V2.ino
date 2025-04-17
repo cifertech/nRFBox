@@ -74,7 +74,7 @@ char menu_items [NUM_ITEMS] [MAX_ITEM_LENGTH] = {
   { "Proto Kill" },
   { "BLE Jammer" },
   { "BLE Spoofer" }, 
-  { "Sour Apple" },
+  { "Apple ATTACK" },
   { "BLE Scan" },
   { "WiFi Scan" },
   { "About" },
@@ -102,9 +102,9 @@ int current_screen = 0;
 void about() {
   u8g2.clearBuffer();
   u8g2.setFont(u8g2_font_6x10_tf);
-  u8g2.drawStr(7, 15, "CiferTech@gmail.com");
-  u8g2.drawStr(12, 35, "GitHub/cifertech");
-  u8g2.drawStr(7, 55, "instagram/cifertech");
+  u8g2.drawStr(7, 15, "01019078873");
+  u8g2.drawStr(12, 35, "Egypt");
+  u8g2.drawStr(7, 55, "instagram/mustafa.mounier");
   u8g2.sendBuffer();
 }
 
@@ -143,19 +143,19 @@ void setup() {
   u8g2.print("nRF-BOX");
 
   u8g2.setFont(u8g2_font_ncenB08_tr); 
-  int16_t creditWidth = u8g2.getUTF8Width("by CiferTech");
+  int16_t creditWidth = u8g2.getUTF8Width("by mustafa");
   int16_t creditX = (106 - creditWidth) / 2;
   u8g2.setCursor(creditX, 40);
-  u8g2.print("by CiferTech");
+  u8g2.print("by mustafa");
 
   u8g2.setFont(u8g2_font_6x10_tf); 
-  int16_t versionWidth = u8g2.getUTF8Width("v2.5.0");
+  int16_t versionWidth = u8g2.getUTF8Width("V2.5.0");
   int16_t versionX = (128 - versionWidth) / 2;
   u8g2.setCursor(versionX, 60);
-  u8g2.print("v2.5.0");
+  u8g2.print("V2.5.0");
   
   u8g2.sendBuffer(); 
-  delay(3000);
+  delay(5000);
 
   u8g2.clearBuffer();
 
