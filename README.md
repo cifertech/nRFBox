@@ -118,6 +118,8 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 - **BLE Scanner** - List nearby Wi-Fi networks with extended details
 - **Wi-Fi Deauthentication Attack** - Send deauthentication frames to disrupt client connections
 
+> Explore the nRFBOX's features in detail at the [nRFBOX Wiki](https://github.com/cifertech/nRFBox/wiki/Features)! 
+
 
 <div>&nbsp;</div>
 
