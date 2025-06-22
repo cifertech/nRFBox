@@ -98,9 +98,8 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 
 
 <div align="center"> 
-  <img src="https://github.com/user-attachments/assets/5238a610-ca81-490f-be8e-b77a84d46383" alt="screenshot" width="Auto" height="Auto" />
+  <img src="https://github.com/user-attachments/assets/1d49f15d-45be-4ed4-b92a-842d628c8695" alt="screenshot" width="Auto" height="Auto" />
 </div>
-
 
 
 
@@ -138,7 +137,7 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
     </td>
     </td>    
     <td style="text-align: center;">
-      <img src="https://github.com/user-attachments/assets/ecdd4a05-19c5-4f32-8871-4912475123ec" alt="nRFBOX V3" style="width: 400px; border: 1px solid #ccc; border-radius: 5px;">
+      <img src="https://github.com/user-attachments/assets/bee71205-64b0-4f40-bf15-2675d3468bc1" alt="nRFBOX V3" style="width: 400px; border: 1px solid #ccc; border-radius: 5px;">
       <p style="font-style: italic; font-size: 14px; margin-top: 5px;">nRFBox-v3 based on ESP32</p>
     </td>
   </tr>
