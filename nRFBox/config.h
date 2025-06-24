@@ -6,15 +6,28 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#define NRFBOX_HARDWARE_V2_5
+//#define NRFBOX_HARDWARE_V2_7
+
+
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 
 // Push Buttons-specific Pins
+#ifdef NRFBOX_HARDWARE_V2_5
+#define BUTTON_UP_PIN       26 
+#define BUTTON_SELECT_PIN   32
+#define BUTTON_DOWN_PIN     33
+#define BTN_PIN_RIGHT       27
+#define BTN_PIN_LEFT        25
+#endif
+#ifdef NRFBOX_HARDWARE_V2_7
 #define BUTTON_UP_PIN       26 
 #define BUTTON_SELECT_PIN   33
 #define BUTTON_DOWN_PIN     32 
 #define BTN_PIN_RIGHT       27
 #define BTN_PIN_LEFT        25
+#endif
 
 // SD Card Slot-specific Pins
 #define SD_CS_PIN 5

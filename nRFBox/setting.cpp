@@ -120,6 +120,7 @@ bool buttonUpPressed = false;
 bool buttonDownPressed = false;
 bool buttonSelectPressed = false;
 
+#ifdef NRFBOX_HARDWARE_V2_7
 void updateFirmware() {
   u8g2.clearBuffer();
   u8g2.setFont(u8g2_font_6x10_tf);
@@ -176,6 +177,9 @@ void updateFirmware() {
 
   firmware.close();
 }
+#else
+void updateFirmware() {}
+#endif
 
 void toggleOption(int option) {
   if (option == 0) { 
@@ -252,11 +256,13 @@ void displayMenu() {
     u8g2.drawStr(0, 45, "  Brightness: ");
   }
 
+#ifdef NRFBOX_HARDWARE_V2_7
   if (currentOption == 2) {
     u8g2.drawStr(0, 60, "> Update Firmware");
   } else {
     u8g2.drawStr(0, 60, "  Update Firmware");
   }
+#endif
 
   u8g2.setCursor(80, 30);
   u8g2.print(neoPixelActive ? "Enabled" : "Disabled");
