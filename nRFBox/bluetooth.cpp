@@ -207,7 +207,7 @@ void blescanLoop() {
   unsigned long currentMillis = millis();
   if (currentMillis - scanStartTime >= scanDuration && !scanComplete) {
     scanComplete = true;
-    results = scan->getResults();
+    results = *scan->getResults();
     scan->stop();
     u8g2.clearBuffer();
     u8g2.drawStr(0, 10, "Scan complete.");
@@ -359,7 +359,7 @@ BLEAdvertisementData getOAdvertisementData() {
   packet[i++] =  0x10;  // Type ???
   esp_fill_random(&packet[i], 3);
 
-  advertisementData.addData(std::string((char *)packet, 17));
+  advertisementData.addData(String((char *)packet, 17));
   return advertisementData;
 }
 
@@ -391,7 +391,7 @@ void sourappleLoop() {
     BLEAdvertisementData oAdvertisementData = getOAdvertisementData();
 
     Advertising->setDeviceAddress(dummy_addr, BLE_ADDR_TYPE_RANDOM);
-    Advertising->addServiceUUID(device_uuid);
+    Advertising->addServiceUUID(device_uuid.c_str());
     Advertising->setAdvertisementData(oAdvertisementData);
 
     Advertising->setMinInterval(0x20);
@@ -492,7 +492,7 @@ namespace Spoofer {
     uint8_t advDataRaw[SAMSUNG_ADV_SIZE];
     memcpy(advDataRaw, SAMSUNG_ADV_TEMPLATE, SAMSUNG_ADV_SIZE);
     advDataRaw[SAMSUNG_ADV_SIZE - 1] = samsungModels[modelIndex].value;
-    advData.addData(std::string((char*)advDataRaw, SAMSUNG_ADV_SIZE));
+    advData.addData(String((char*)advDataRaw, SAMSUNG_ADV_SIZE));
     return true;
   }
 
@@ -500,14 +500,14 @@ namespace Spoofer {
     uint8_t advDataRaw[GOOGLE_ADV_SIZE];
     memcpy(advDataRaw, GOOGLE_ADV_TEMPLATE, GOOGLE_ADV_SIZE);
     advDataRaw[GOOGLE_ADV_SIZE - 1] = (uint8_t)(random(121) - 100); 
-    advData.addData(std::string((char*)advDataRaw, GOOGLE_ADV_SIZE));
+    advData.addData(String((char*)advDataRaw, GOOGLE_ADV_SIZE));
     return true;
   }
 
   BLEAdvertisementData getAdvertisementData() {
     BLEAdvertisementData oAdvertisementData = BLEAdvertisementData();
     if (deviceType <= 17) { // Apple (1–17)
-      oAdvertisementData.addData(std::string((char*)DEVICES[device_index], 31));
+      oAdvertisementData.addData(String((char*)DEVICES[device_index], 31));
     } else if (deviceType <= 20) { // Samsung (18–20)
       uint8_t samsungIndex = deviceType - 18; // 18→0, 19→1, 20→2
       generateSamsungAdvPacket(samsungIndex, oAdvertisementData);
@@ -621,7 +621,7 @@ namespace Spoofer {
       }
       BLEAdvertisementData oAdvertisementData = getAdvertisementData();
       pAdvertising->setDeviceAddress(dummy_addr, BLE_ADDR_TYPE_RANDOM);
-      pAdvertising->addServiceUUID(devices_uuid);
+      pAdvertising->addServiceUUID(devices_uuid.c_str());
       pAdvertising->setAdvertisementData(oAdvertisementData);
       pAdvertising->setMinInterval(0x20); // 32.5ms
       pAdvertising->setMaxInterval(0x20);
