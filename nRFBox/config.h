@@ -6,15 +6,28 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+//#define NRFBOX_HARDWARE_V2_5
+#define NRFBOX_HARDWARE_V2_7
+
+
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 
 // Push Buttons-specific Pins
+#ifdef NRFBOX_HARDWARE_V2_5
+#define BUTTON_UP_PIN       26 
+#define BUTTON_SELECT_PIN   32
+#define BUTTON_DOWN_PIN     33
+#define BTN_PIN_RIGHT       27
+#define BTN_PIN_LEFT        25
+#endif
+#ifdef NRFBOX_HARDWARE_V2_7
 #define BUTTON_UP_PIN       26 
 #define BUTTON_SELECT_PIN   33
 #define BUTTON_DOWN_PIN     32 
 #define BTN_PIN_RIGHT       27
 #define BTN_PIN_LEFT        25
+#endif
 
 // SD Card Slot-specific Pins
 #define SD_CS_PIN 5
@@ -39,12 +52,10 @@
 #include <Preferences.h>
 #include <vector>
 #include <string>
+#ifdef NRFBOX_HARDWARE_V2_7
 #include <SD.h>
+#endif
 #include <Update.h>
-
-U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
-
-Adafruit_NeoPixel pixels(1, 14, NEO_GRB + NEO_KHZ800);
 
 // BLE-specific dependencies
 #include <BLEDevice.h>
