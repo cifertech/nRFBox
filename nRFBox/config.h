@@ -6,8 +6,8 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define NRFBOX_HARDWARE_V2_5
-//#define NRFBOX_HARDWARE_V2_7
+//#define NRFBOX_HARDWARE_V2_5
+#define NRFBOX_HARDWARE_V2_7
 
 
 #define SCREEN_WIDTH 128
@@ -52,7 +52,9 @@
 #include <Preferences.h>
 #include <vector>
 #include <string>
+#ifdef NRFBOX_HARDWARE_V2_7
 #include <SD.h>
+#endif
 #include <Update.h>
 
 // BLE-specific dependencies

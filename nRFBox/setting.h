@@ -13,7 +13,9 @@
 #include <RF24.h>
 #include <vector>
 #include <string>
+#ifdef NRFBOX_HARDWARE_V2_7
 #include <SD.h>
+#endif
 #include <Update.h>
 #include <SPI.h>
 
