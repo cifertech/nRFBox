@@ -1,29 +1,29 @@
+
+
 <div align="center">
 
-  <img src="https://user-images.githubusercontent.com/62047147/195847997-97553030-3b79-4643-9f2c-1f04bba6b989.png" alt="logo" width="100" height="auto" />
-  
-  <h1> nRFBOX </h1>
-  <p> All-in-One Gadget for BLE and 2.4GHz Networks </p>
+  <img src="https://github.com/user-attachments/assets/1f3df5b3-2d5c-416c-a17d-5b5da61423dd" alt="nRFBOX Banner" width="100%"/>
 
+  <br/>
+  <br/>
 
-<!-- Badges -->
-<a href="https://github.com/cifertech/nrfbox" title="Go to GitHub repo"><img src="https://img.shields.io/static/v1?label=cifertech&message=nrfbox&color=purple&logo=github" alt="cifertech - nrfbox"></a>
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/cifertech/nrfbox/total)
-<a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/github/stars/cifertech/nrfbox?style=social" alt="stars - nrfbox"></a>
-<a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/github/forks/cifertech/nrfbox?style=social" alt="forks - nrfbox"></a>
+  <p align="center">
+    <a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/static/v1?label=cifertech&message=nrfbox&color=00bcd4&logo=github"/></a>
+    <a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/github/stars/cifertech/nrfbox?style=social"/></a>
+    <a href="https://github.com/cifertech/nrfbox"><img src="https://img.shields.io/github/forks/cifertech/nrfbox?style=social"/></a>
+    <img src="https://img.shields.io/github/downloads/cifertech/nrfbox/total?color=00bcd4&label=downloads&logo=github"/>
+    <img src="https://img.shields.io/badge/nRF24-BLE%20%2B%202.4GHz-00bcd4"/>
+    <img src="https://img.shields.io/badge/license-MIT-00bcd4"/>
+  </p>
 
-   
-<h4>
-    <a href="https://twitter.com/techcifer">TWITTER</a>
-  <span> · </span>
-    <a href="https://www.instagram.com/cifertech/">INSTAGRAM</a>
-  <span> · </span>
-    <a href="https://www.youtube.com/@techcifer">YOUTUBE</a>
-  <span> · </span>
-    <a href="https://cifertech.net/">WEBSITE</a>
-  </h4>
+  <p align="center">
+    <a href="https://twitter.com/techcifer"><img src="https://img.shields.io/badge/Twitter-00bcd4?logo=x&logoColor=black"/></a>
+    <a href="https://www.instagram.com/cifertech/"><img src="https://img.shields.io/badge/Instagram-00bcd4?logo=instagram&logoColor=black"/></a>
+    <a href="https://www.youtube.com/@techcifer"><img src="https://img.shields.io/badge/YouTube-00bcd4?logo=youtube&logoColor=black"/></a>
+    <a href="https://cifertech.net/"><img src="https://img.shields.io/badge/Website-00bcd4?logo=googlechrome&logoColor=black"/></a>
+  </p>
+
 </div>
-<br/>
 
 ## 📖 Explore the nRFBox Wiki
 
@@ -144,14 +144,14 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 </table>
 
 
-<div>&nbsp;</div>
+
 
 <!-- License -->
 ## :warning: License
 
 Distributed under the MIT License. See LICENSE.txt for more information.
 
-<div>&nbsp;</div>
+
 
 <!-- Contact -->
 ## :handshake: Contact
@@ -162,7 +162,7 @@ CiferTech - [@twitter](https://twitter.com/techcifer) - CiferTech@gmali.com
 
 Project Link: [https://github.com/cifertech/nRFBOX](https://github.com/cifertech/nrfbox)
 
-<div>&nbsp;</div>
+
 
 <!-- Acknowledgments -->
 ## :gem: Acknowledgements 
