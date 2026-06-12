@@ -182,9 +182,11 @@ bool scanning = false;
 uint32_t last_packet_time = 0;
 String lastNeoPixelColour = "0"; 
 
+/*
 extern "C" int ieee80211_raw_frame_sanity_check(int32_t arg, int32_t arg2, int32_t arg3) {
     return 0;
 }
+*/
 
 void wsl_bypasser_send_raw_frame(const uint8_t *frame_buffer, int size) {
     esp_err_t res = esp_wifi_80211_tx(WIFI_IF_AP, frame_buffer, size, false);
