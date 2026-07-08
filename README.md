@@ -144,6 +144,13 @@ nRFBOX is a wireless toolkit designed to explore, analyze, and interact with var
 </table>
 
 
+<div>&nbsp;</div>
+
+## :mag: PCB Gerber Preview
+
+The PCB Gerber archive can be opened directly in ECAD Forge to inspect the board in the browser:
+[Open PCB/Gerber.zip in ECAD Forge](https://ecadforge.app/?url=https%3A%2F%2Fgithub.com%2Fcifertech%2FnRFBox%2Fblob%2Fmain%2FPCB%2FGerber.zip)
+
 
 
 <!-- License -->
@@ -176,4 +183,3 @@ Project Link: [https://github.com/cifertech/nRFBOX](https://github.com/cifertech
  - [ESP32-Sour-Apple](https://github.com/RapierXbox/ESP32-Sour-Apple)
 
 **Community Contributors**: Thanks to everyone who helped improve nRFBox! Your support is much appreciated!
-
