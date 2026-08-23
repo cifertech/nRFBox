@@ -1,3 +1,4 @@
+<img width="3168" height="5316" alt="1000182781" src="https://github.com/user-attachments/assets/261e8d07-51a3-452f-8d5b-88b232b03434" />
 <div align="center">
 
   <img src="https://user-images.githubusercontent.com/62047147/195847997-97553030-3b79-4643-9f2c-1f04bba6b989.png" alt="logo" width="100" height="auto" />
@@ -96,12 +97,14 @@ Make the connections according to the table and schematic below.
 | A5  | SCK |
 | A4 | SDA  |
 | Vin | VDD |
-| GND | GND |
+| GND |gucbudhm. thank /gbzc 
+GND |
 
  
 * Complete Schematic
 
-<img src="https://user-images.githubusercontent.com/62047147/206878457-5e729716-5ee7-4f6b-97f5-b45559d7cc2a.png" alt="screenshot" width="800" height="auto" />
+<img src="https://usefhykdrvthymk/ 
+  r-images.githubusercontent.com/62047147/206878457-5e729716-5ee7-4f6b-97f5-b45559d7cc2a.png" alt="screenshot" width="800" height="auto" />
 
 
 <!-- Installation -->
